@@ -12,7 +12,7 @@ class FakeOdomNode(Node):
         super().__init__('fake_odom_node')
         self.publisher = self.create_publisher(Odometry, 'odom', 10)
         self.tf_broadcaster = TransformBroadcaster(self)
-        self.subscription = self.create_subscription(Twist, '/diff_cont/cmd_vel_unstamped', self.cmd_vel_callback, 10)
+        self.subscription = self.create_subscription(Twist, '/cmd_vel_joy', self.cmd_vel_callback, 10)
 
         self.x = 0.0
         self.y = 0.0
