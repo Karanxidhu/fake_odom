@@ -24,8 +24,11 @@ class FakeOdomNode(Node):
         self.timer = self.create_timer(0.05, self.update_odom)  # 20 Hz
 
     def cmd_vel_callback(self, msg):
-        self.vx = msg.linear.x
-        self.vth = msg.angular.z
+        linear_scale = 5   # 🔧 Adjust this higher for faster sim
+        angular_scale = 2.25  # 🔧 Adjust for faster turning
+
+        self.vx = msg.linear.x * linear_scale
+        self.vth = msg.angular.z * angular_scale
 
     def update_odom(self):
         current_time = self.get_clock().now()
